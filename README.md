@@ -1,1 +1,1 @@
-# servicekatalogen.varmebaronen.se ❤️‍🔥 📖
+# Starter template
