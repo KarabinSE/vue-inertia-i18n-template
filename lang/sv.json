@@ -76,8 +76,8 @@
     "Log Out": "utloggning",
     "Log out": "Logga ut",
     "Login": "Logga in",
-    "login using a recovery code": "Logga in med en återställningskod",
-    "login using an authentication code": "Logga in med en autentiseringskod",
+    "login using a recovery code": "logga in med en återställningskod",
+    "login using an authentication code": "logga in med en autentiseringskod",
     "Logout": "Logga ut",
     "Manage your profile and account settings": "Hantera din profil och kontoinställningar",
     "Manage your two-factor authentication settings": "Hantera dina tvåfaktorautentiseringsinställningar",
@@ -167,5 +167,6 @@
     "Your email address is unverified.": "Din e-postadress är overifierad.",
     "Please proceed with caution, this cannot be undone.": "Var försiktig, detta kan inte ångras.",
     "Warning": "Varning",
-    "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "När ditt konto har tagits bort kommer alla dess resurser och data också att raderas permanent. Ange ditt lösenord för att bekräfta att du vill ta bort ditt konto permanent."
+    "Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.": "När ditt konto har tagits bort kommer alla dess resurser och data också att raderas permanent. Ange ditt lösenord för att bekräfta att du vill ta bort ditt konto permanent.",
+    "Enter recovery code": "Ange återställningskod"
 }

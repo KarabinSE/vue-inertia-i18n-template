@@ -48,10 +48,10 @@
                         class="w-full"
                         :disabled="processing"
                     >
-                        Continue
+                        {{ $t('Continue') }}
                     </Button>
                     <div class="text-center text-sm text-muted-foreground">
-                        <span>or you can </span>
+                        <span>{{ $t('or you can') }}&nbsp;</span>
                         <button
                             type="button"
                             class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
@@ -83,11 +83,11 @@
                         class="w-full"
                         :disabled="processing"
                     >
-                        Continue
+                        {{ $t('Continue') }}
                     </Button>
 
                     <div class="text-center text-sm text-muted-foreground">
-                        <span>or you can </span>
+                        <span>{{ $t('or you can') }}&nbsp;</span>
                         <button
                             type="button"
                             class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
@@ -122,21 +122,25 @@ interface AuthConfigContent {
     toggleText: string;
 }
 
+import { wTrans } from 'laravel-vue-i18n'
+
 const authConfigContent = computed<AuthConfigContent>(() => {
     if (showRecoveryInput.value) {
         return {
-            title: 'Recovery Code',
-            description:
+            title: wTrans('Recovery Code').value,
+            description: wTrans(
                 'Please confirm access to your account by entering one of your emergency recovery codes.',
-            toggleText: 'login using an authentication code',
+            ).value,
+            toggleText: wTrans('login using an authentication code').value,
         }
     }
 
     return {
-        title: 'Authentication Code',
-        description:
+        title: wTrans('Authentication Code').value,
+        description: wTrans(
             'Enter the authentication code provided by your authenticator application.',
-        toggleText: 'login using a recovery code',
+        ).value,
+        toggleText: wTrans('login using a recovery code').value,
     }
 })
 
