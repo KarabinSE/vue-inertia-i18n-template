@@ -24,10 +24,11 @@ import { type BreadcrumbItem } from '@/types'
 import AppLayout from '@/layouts/AppLayout.vue'
 import SettingsLayout from '@/layouts/settings/Layout.vue'
 import { edit } from '@/routes/appearance'
+import { wTrans } from 'laravel-vue-i18n'
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {
-        title: 'Appearance settings',
+        title: wTrans('Appearance settings').value,
         href: edit().url,
     },
 ]

@@ -22,18 +22,19 @@
 <script setup lang="ts">
 import { useAppearance } from '@/composables/useAppearance'
 import { Monitor, Moon, Sun } from 'lucide-vue-next'
+import { wTrans } from 'laravel-vue-i18n'
 
 const { appearance, updateAppearance } = useAppearance()
 
 const tabs = [
     { value: 'light',
         Icon: Sun,
-        label: 'Light' },
+        label: wTrans('Light').value },
     { value: 'dark',
         Icon: Moon,
-        label: 'Dark' },
+        label: wTrans('Dark').value },
     { value: 'system',
         Icon: Monitor,
-        label: 'System' },
+        label: wTrans('System').value },
 ] as const
 </script>
