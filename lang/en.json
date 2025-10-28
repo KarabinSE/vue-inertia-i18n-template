@@ -35,6 +35,7 @@
     "Service Unavailable": "Service Unavailable",
     "Showing": "Showing",
     "status": "status",
+    "above": "above",
     "The :attribute must be at least :length characters and contain at least one number.": "The :attribute must be at least :length characters and contain at least one number.",
     "The :attribute must be at least :length characters and contain at least one special character and one number.": "The :attribute must be at least :length characters and contain at least one special character and one number.",
     "The :attribute must be at least :length characters and contain at least one special character.": "The :attribute must be at least :length characters and contain at least one special character.",
