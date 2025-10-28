@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password_confirmation">Confirm password</Label>
+                        <Label for="password_confirmation">{{ $t('Confirm password') }}</Label>
                         <Input
                             id="password_confirmation"
                             name="password_confirmation"
@@ -82,7 +82,7 @@
                                 v-show="recentlySuccessful"
                                 class="text-sm text-neutral-600"
                             >
-                                Saved.
+                                {{ $t('Saved.') }}
                             </p>
                         </Transition>
                     </div>
@@ -106,10 +106,11 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
 import { type BreadcrumbItem } from '@/types'
+import { wTrans } from 'laravel-vue-i18n'
 
 const breadcrumbItems: BreadcrumbItem[] = [
     {
-        title: 'Password settings',
+        title: wTrans('Password settings'),
         href: edit().url,
     },
 ]

@@ -9,10 +9,10 @@
         >
             <div class="relative space-y-0.5 text-red-600 dark:text-red-100">
                 <p class="font-medium">
-                    Warning
+                    {{ $t('Warning') }}
                 </p>
                 <p class="text-sm">
-                    Please proceed with caution, this cannot be undone.
+                    {{ $t('Please proceed with caution, this cannot be undone.') }}
                 </p>
             </div>
             <Dialog>
@@ -21,7 +21,7 @@
                         variant="destructive"
                         data-test="delete-user-button"
                     >
-                        Delete account
+                        {{ $t('Delete account') }}
                     </Button>
                 </DialogTrigger>
                 <DialogContent>
@@ -37,15 +37,10 @@
                     >
                         <DialogHeader class="space-y-3">
                             <DialogTitle>
-                                Are you sure you want to delete your
-                                account?
+                                {{ $t('Are you sure you want to delete your account?') }}
                             </DialogTitle>
                             <DialogDescription>
-                                Once your account is deleted, all of its
-                                resources and data will also be permanently
-                                deleted. Please enter your password to confirm
-                                you would like to permanently delete your
-                                account.
+                                {{ $t('Once your account is deleted, all of its resources and data will also be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.') }}
                             </DialogDescription>
                         </DialogHeader>
 
@@ -53,7 +48,7 @@
                             <Label
                                 for="password"
                                 class="sr-only"
-                            >Password</Label>
+                            >{{ $t('Password') }}</Label>
                             <Input
                                 id="password"
                                 ref="passwordInput"
@@ -75,7 +70,7 @@
                                         }
                                     "
                                 >
-                                    Cancel
+                                    {{ $t('Cancel') }}
                                 </Button>
                             </DialogClose>
 
@@ -85,7 +80,7 @@
                                 :disabled="processing"
                                 data-test="confirm-delete-user-button"
                             >
-                                Delete account
+                                {{ $t('Delete account') }}
                             </Button>
                         </DialogFooter>
                     </Form>

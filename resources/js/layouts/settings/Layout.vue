@@ -48,9 +48,9 @@ import { show } from '@/routes/two-factor'
 import { edit as editPassword } from '@/routes/user-password'
 import { type NavItem } from '@/types'
 import { Link } from '@inertiajs/vue3'
+
 import { wTrans } from 'laravel-vue-i18n'
 import { computed } from 'vue'
-
 
 const sidebarNavItems = computed((): NavItem[] => [
     {

@@ -14,7 +14,7 @@
                 as="button"
             >
                 <Settings class="mr-2 h-4 w-4" />
-                Settings
+                {{ $t('Settings') }}
             </Link>
         </DropdownMenuItem>
     </DropdownMenuGroup>
@@ -28,7 +28,7 @@
             @click="handleLogout"
         >
             <LogOut class="mr-2 h-4 w-4" />
-            Log out
+            {{ $t('Log out') }}
         </Link>
     </DropdownMenuItem>
 </template>

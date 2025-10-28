@@ -17,10 +17,7 @@
                     </Badge>
 
                     <p class="text-muted-foreground">
-                        When you enable two-factor authentication, you will be
-                        prompted for a secure pin during login. This pin can be
-                        retrieved from a TOTP-supported application on your
-                        phone.
+                        {{ $t('When you enable two-factor authentication, you will be prompted for a secure pin during login. This pin can be retrieved from a TOTP-supported application on your phone.') }}
                     </p>
 
                     <div>
@@ -28,7 +25,7 @@
                             v-if="hasSetupData"
                             @click="showSetupModal = true"
                         >
-                            <ShieldCheck />Continue Setup
+                            <ShieldCheck />{{ $t('Continue Setup') }}
                         </Button>
                         <Form
                             v-else
@@ -52,10 +49,7 @@
                     </Badge>
 
                     <p class="text-muted-foreground">
-                        With two-factor authentication enabled, you will be
-                        prompted for a secure, random pin during login, which
-                        you can retrieve from the TOTP-supported application on
-                        your phone.
+                        {{ $t('With two-factor authentication enabled, you will be prompted for a secure, random pin during login, which you can retrieve from the TOTP-supported application on your phone.') }}
                     </p>
 
                     <TwoFactorRecoveryCodes />
@@ -68,7 +62,7 @@
                                 :disabled="processing"
                             >
                                 <ShieldBan />
-                                Disable 2FA
+                                {{ $t('Disable 2FA') }}
                             </Button>
                         </Form>
                     </div>
@@ -98,6 +92,7 @@ import { BreadcrumbItem } from '@/types'
 import { Form, Head } from '@inertiajs/vue3'
 import { ShieldBan, ShieldCheck } from 'lucide-vue-next'
 import { onUnmounted, ref } from 'vue'
+import { wTrans } from 'laravel-vue-i18n'
 
 interface Props {
     requiresConfirmation?: boolean;
@@ -111,7 +106,7 @@ withDefaults(defineProps<Props>(), {
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
-        title: 'Two-Factor Authentication',
+        title: wTrans('Two-Factor Authentication'),
         href: show.url(),
     },
 ]

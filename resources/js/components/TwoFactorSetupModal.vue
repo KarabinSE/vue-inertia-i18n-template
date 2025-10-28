@@ -79,7 +79,7 @@
                             <div
                                 class="absolute inset-0 top-1/2 h-px w-full bg-border"
                             />
-                            <span class="relative bg-card px-2 py-1">or, enter the code manually</span>
+                            <span class="relative bg-card px-2 py-1">{{ $t('or, enter the code manually') }}</span>
                         </div>
 
                         <div
@@ -170,7 +170,7 @@
                                     :disabled="processing"
                                     @click="showVerificationStep = false"
                                 >
-                                    Back
+                                    {{ $t('Back') }}
                                 </Button>
                                 <Button
                                     type="submit"
@@ -179,7 +179,7 @@
                                         processing || codeValue.length < 6
                                     "
                                 >
-                                    Confirm
+                                    {{ $t('Confirm') }}
                                 </Button>
                             </div>
                         </div>
@@ -212,6 +212,7 @@ import { Form } from '@inertiajs/vue3'
 import { useClipboard } from '@vueuse/core'
 import { Check, Copy, Loader2, ScanLine } from 'lucide-vue-next'
 import { computed, nextTick, ref, watch } from 'vue'
+import { wTrans } from 'laravel-vue-i18n'
 
 interface Props {
     requiresConfirmation: boolean;
@@ -222,8 +223,7 @@ const props = defineProps<Props>()
 const isOpen = defineModel<boolean>('isOpen')
 
 const { copy, copied } = useClipboard()
-const { qrCodeSvg, manualSetupKey, clearSetupData, fetchSetupData, errors } =
-    useTwoFactorAuth()
+const { qrCodeSvg, manualSetupKey, clearSetupData, fetchSetupData, errors } = useTwoFactorAuth()
 
 const showVerificationStep = ref(false)
 const code = ref<number[]>([])
@@ -238,26 +238,26 @@ const modalConfig = computed<{
 }>(() => {
     if (props.twoFactorEnabled) {
         return {
-            title: 'Two-Factor Authentication Enabled',
-            description:
+            title: wTrans('Two-Factor Authentication Enabled').value,
+            description: wTrans(
                 'Two-factor authentication is now enabled. Scan the QR code or enter the setup key in your authenticator app.',
-            buttonText: 'Close',
+            ).value,
+            buttonText: wTrans('Close').value,
         }
     }
 
     if (showVerificationStep.value) {
         return {
-            title: 'Verify Authentication Code',
-            description: 'Enter the 6-digit code from your authenticator app',
-            buttonText: 'Continue',
+            title: wTrans('Verify Authentication Code').value,
+            description: wTrans('Enter the 6-digit code from your authenticator app').value,
+            buttonText: wTrans('Continue').value,
         }
     }
 
     return {
-        title: 'Enable Two-Factor Authentication',
-        description:
-            'To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app',
-        buttonText: 'Continue',
+        title: wTrans('Enable Two-Factor Authentication').value,
+        description: wTrans('To finish enabling two-factor authentication, scan the QR code or enter the setup key in your authenticator app').value,
+        buttonText: wTrans('Continue').value,
     }
 })
 

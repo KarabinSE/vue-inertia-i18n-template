@@ -45,13 +45,13 @@
 
                     <div v-if="mustVerifyEmail && !user.email_verified_at">
                         <p class="-mt-4 text-sm text-muted-foreground">
-                            Your email address is unverified.
+                            {{ $t('Your email address is unverified.') }}
                             <Link
                                 :href="send()"
                                 as="button"
                                 class="text-foreground underline decoration-neutral-300 underline-offset-4 transition-colors duration-300 ease-out hover:decoration-current! dark:decoration-neutral-500"
                             >
-                                Click here to resend the verification email.
+                                {{ $t('Click here to resend the verification email.') }}
                             </Link>
                         </p>
 
@@ -59,8 +59,7 @@
                             v-if="status === 'verification-link-sent'"
                             class="mt-2 text-sm font-medium text-green-600"
                         >
-                            A new verification link has been sent to your email
-                            address.
+                            {{ $t('A new verification link has been sent to your email address.') }}
                         </div>
                     </div>
 
@@ -82,7 +81,7 @@
                                 v-show="recentlySuccessful"
                                 class="text-sm text-neutral-600"
                             >
-                                Saved.
+                                {{ $t('Saved.') }}
                             </p>
                         </Transition>
                     </div>
@@ -109,20 +108,22 @@ import { Label } from '@/components/ui/label'
 import AppLayout from '@/layouts/AppLayout.vue'
 import SettingsLayout from '@/layouts/settings/Layout.vue'
 import { type BreadcrumbItem } from '@/types'
+import { computed } from 'vue'
 
 interface Props {
     mustVerifyEmail: boolean;
     status?: string;
 }
 
+import { wTrans } from 'laravel-vue-i18n'
 defineProps<Props>()
 
-const breadcrumbItems: BreadcrumbItem[] = [
+const breadcrumbItems = computed((): BreadcrumbItem[] => [
     {
-        title: 'Profile settings',
+        title: wTrans('Profile settings'), // Keep as string since $t() doesn't work here
         href: edit().url,
     },
-]
+])
 
 const page = usePage()
 const user = page.props.auth.user

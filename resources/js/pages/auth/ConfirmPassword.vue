@@ -36,7 +36,7 @@
                             v-if="processing"
                             class="h-4 w-4 animate-spin"
                         />
-                        {{ $t('Confirm') }}
+                        {{ $t('Confirm Password') }}
                     </Button>
                 </div>
             </div>
