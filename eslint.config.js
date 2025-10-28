@@ -6,7 +6,7 @@ export default defineConfigWithVueTs(
     vue.configs['flat/recommended'],
     vueTsConfigs.recommended,
     {
-        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js'],
+        ignores: ['vendor', 'node_modules', 'public', 'bootstrap/ssr', 'tailwind.config.js', 'resources/js/components/ui/*'],
     },
     {
         ignores: ['resources/js/components/ui/*'],
