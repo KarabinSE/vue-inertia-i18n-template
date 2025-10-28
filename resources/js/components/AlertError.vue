@@ -1,20 +1,3 @@
-<script setup lang="ts">
-import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
-import { AlertCircle } from 'lucide-vue-next';
-import { computed } from 'vue';
-
-interface Props {
-    errors: string[];
-    title?: string;
-}
-
-const props = withDefaults(defineProps<Props>(), {
-    title: 'Something went wrong.',
-});
-
-const uniqueErrors = computed(() => Array.from(new Set(props.errors)));
-</script>
-
 <template>
     <Alert variant="destructive">
         <AlertCircle class="size-4" />
@@ -28,3 +11,20 @@ const uniqueErrors = computed(() => Array.from(new Set(props.errors)));
         </AlertDescription>
     </Alert>
 </template>
+
+<script setup lang="ts">
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert'
+import { AlertCircle } from 'lucide-vue-next'
+import { computed } from 'vue'
+
+interface Props {
+    errors: string[];
+    title?: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+    title: 'Something went wrong.',
+})
+
+const uniqueErrors = computed(() => Array.from(new Set(props.errors)))
+</script>

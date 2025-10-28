@@ -1,16 +1,3 @@
-<script setup lang="ts">
-import InputError from '@/components/InputError.vue';
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import AuthBase from '@/layouts/AuthLayout.vue';
-import { login } from '@/routes';
-import { store } from '@/routes/register';
-import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
-</script>
-
 <template>
     <AuthBase
         :title="$t('Create an account')"
@@ -19,9 +6,9 @@ import { LoaderCircle } from 'lucide-vue-next';
         <Head :title="$t('Register')" />
 
         <Form
+            v-slot="{ errors, processing }"
             v-bind="store.form()"
             :reset-on-success="['password', 'password_confirmation']"
-            v-slot="{ errors, processing }"
             class="flex flex-col gap-6"
         >
             <div class="grid gap-6">
@@ -103,9 +90,23 @@ import { LoaderCircle } from 'lucide-vue-next';
                     :href="login()"
                     class="underline underline-offset-4"
                     :tabindex="6"
-                    >{{ $t('Log in') }}</TextLink
                 >
+                    {{ $t('Log in') }}
+                </TextLink>
             </div>
         </Form>
     </AuthBase>
 </template>
+
+<script setup lang="ts">
+import InputError from '@/components/InputError.vue'
+import TextLink from '@/components/TextLink.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import AuthBase from '@/layouts/AuthLayout.vue'
+import { login } from '@/routes'
+import { store } from '@/routes/register'
+import { Form, Head } from '@inertiajs/vue3'
+import { LoaderCircle } from 'lucide-vue-next'
+</script>

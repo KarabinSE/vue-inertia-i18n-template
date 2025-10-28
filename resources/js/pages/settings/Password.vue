@@ -1,29 +1,3 @@
-<script setup lang="ts">
-import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController';
-import InputError from '@/components/InputError.vue';
-import AppLayout from '@/layouts/AppLayout.vue';
-import SettingsLayout from '@/layouts/settings/Layout.vue';
-import { edit } from '@/routes/user-password';
-import { Form, Head } from '@inertiajs/vue3';
-import { ref } from 'vue';
-
-import HeadingSmall from '@/components/HeadingSmall.vue';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { type BreadcrumbItem } from '@/types';
-
-const breadcrumbItems: BreadcrumbItem[] = [
-    {
-        title: 'Password settings',
-        href: edit().url,
-    },
-];
-
-const passwordInput = ref<HTMLInputElement | null>(null);
-const currentPasswordInput = ref<HTMLInputElement | null>(null);
-</script>
-
 <template>
     <AppLayout :breadcrumbs="breadcrumbItems">
         <Head :title="$t('Password settings')" />
@@ -36,6 +10,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                 />
 
                 <Form
+                    v-slot="{ errors, processing, recentlySuccessful }"
                     v-bind="PasswordController.update.form()"
                     :options="{
                         preserveScroll: true,
@@ -47,7 +22,6 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                         'current_password',
                     ]"
                     class="space-y-6"
-                    v-slot="{ errors, processing, recentlySuccessful }"
                 >
                     <div class="grid gap-2">
                         <Label for="current_password">{{ $t('Current password') }}</Label>
@@ -78,9 +52,7 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                     </div>
 
                     <div class="grid gap-2">
-                        <Label for="password_confirmation"
-                            >Confirm password</Label
-                        >
+                        <Label for="password_confirmation">Confirm password</Label>
                         <Input
                             id="password_confirmation"
                             name="password_confirmation"
@@ -96,8 +68,9 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
                         <Button
                             :disabled="processing"
                             data-test="update-password-button"
-                            >{{ $t('Save password') }}</Button
                         >
+                            {{ $t('Save password') }}
+                        </Button>
 
                         <Transition
                             enter-active-class="transition ease-in-out"
@@ -118,3 +91,29 @@ const currentPasswordInput = ref<HTMLInputElement | null>(null);
         </SettingsLayout>
     </AppLayout>
 </template>
+
+<script setup lang="ts">
+import PasswordController from '@/actions/App/Http/Controllers/Settings/PasswordController'
+import InputError from '@/components/InputError.vue'
+import AppLayout from '@/layouts/AppLayout.vue'
+import SettingsLayout from '@/layouts/settings/Layout.vue'
+import { edit } from '@/routes/user-password'
+import { Form, Head } from '@inertiajs/vue3'
+import { ref } from 'vue'
+
+import HeadingSmall from '@/components/HeadingSmall.vue'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
+import { type BreadcrumbItem } from '@/types'
+
+const breadcrumbItems: BreadcrumbItem[] = [
+    {
+        title: 'Password settings',
+        href: edit().url,
+    },
+]
+
+const passwordInput = ref<HTMLInputElement | null>(null)
+const currentPasswordInput = ref<HTMLInputElement | null>(null)
+</script>

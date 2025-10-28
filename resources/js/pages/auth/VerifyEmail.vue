@@ -1,17 +1,3 @@
-<script setup lang="ts">
-import TextLink from '@/components/TextLink.vue';
-import { Button } from '@/components/ui/button';
-import AuthLayout from '@/layouts/AuthLayout.vue';
-import { logout } from '@/routes';
-import { send } from '@/routes/verification';
-import { Form, Head } from '@inertiajs/vue3';
-import { LoaderCircle } from 'lucide-vue-next';
-
-defineProps<{
-    status?: string;
-}>();
-</script>
-
 <template>
     <AuthLayout
         :title="$t('Verify email')"
@@ -28,9 +14,9 @@ defineProps<{
         </div>
 
         <Form
+            v-slot="{ processing }"
             v-bind="send.form()"
             class="space-y-6 text-center"
-            v-slot="{ processing }"
         >
             <Button :disabled="processing" variant="secondary">
                 <LoaderCircle v-if="processing" class="h-4 w-4 animate-spin" />
@@ -47,3 +33,17 @@ defineProps<{
         </Form>
     </AuthLayout>
 </template>
+
+<script setup lang="ts">
+import TextLink from '@/components/TextLink.vue'
+import { Button } from '@/components/ui/button'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import { logout } from '@/routes'
+import { send } from '@/routes/verification'
+import { Form, Head } from '@inertiajs/vue3'
+import { LoaderCircle } from 'lucide-vue-next'
+
+defineProps<{
+    status?: string;
+}>()
+</script>

@@ -1,5 +1,5 @@
-import { InertiaLinkProps } from '@inertiajs/vue3';
-import type { LucideIcon } from 'lucide-vue-next';
+import { InertiaLinkProps } from '@inertiajs/vue3'
+import type { LucideIcon } from 'lucide-vue-next'
 
 export interface Auth {
     user: User;
