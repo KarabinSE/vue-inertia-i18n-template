@@ -6,6 +6,7 @@ import type { DefineComponent } from 'vue'
 import { createApp, h } from 'vue'
 import { initializeTheme } from './composables/useAppearance'
 import { i18nVue } from 'laravel-vue-i18n'
+import { installPlugins } from './plugins'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
 
@@ -17,16 +18,12 @@ createInertiaApp({
             import.meta.glob<DefineComponent>('./pages/**/*.vue'),
         ),
     setup({ el, App, props, plugin }) {
-        createApp({ render: () => h(App, props) })
-            .use(i18nVue, {
-                resolve: async lang => {
-                    const langs = import.meta.glob('../../lang/*.json')
+        const app = createApp({ render: () => h(App, props) })
 
-                    return await langs[`../../lang/${lang}.json`]()
-                },
-            })
-            .use(plugin)
-            .mount(el)
+        installPlugins(app)
+
+        app.use(plugin)
+        app.mount(el as HTMLElement)
     },
     progress: {
         color: '#4B5563',
