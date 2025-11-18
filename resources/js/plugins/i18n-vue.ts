@@ -7,9 +7,9 @@ interface I18nVueOptions {
 export function install(app: any) {
     app.use(i18nVue, {
         resolve: async (lang: string): Promise<Record<string, any>> => {
-            const langs: Record<string, () => Promise<Record<string, any>>> = import.meta.glob('../../lang/*.json')
+            const langs: Record<string, () => Promise<Record<string, any>>> = import.meta.glob('../../../lang/*.json')
 
-            return await langs[`../../lang/${lang}.json`]()
+            return await langs[`../../../lang/${lang}.json`]()
         },
     } as I18nVueOptions)
 }
