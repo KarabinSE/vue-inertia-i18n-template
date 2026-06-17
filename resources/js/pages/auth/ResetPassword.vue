@@ -80,7 +80,7 @@ import { Label } from '@/components/ui/label'
 import AuthLayout from '@/layouts/AuthLayout.vue'
 import { update } from '@/routes/password'
 import { Form, Head } from '@inertiajs/vue3'
-import { LoaderCircle } from 'lucide-vue-next'
+import { LoaderCircle } from '@lucide/vue'
 import { ref } from 'vue'
 
 const props = defineProps<{

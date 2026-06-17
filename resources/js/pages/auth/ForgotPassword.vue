@@ -62,7 +62,7 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import { login } from '@/routes'
 import { email } from '@/routes/password'
 import { Form, Head } from '@inertiajs/vue3'
-import { LoaderCircle } from 'lucide-vue-next'
+import { LoaderCircle } from '@lucide/vue'
 
 defineProps<{
     status?: string;

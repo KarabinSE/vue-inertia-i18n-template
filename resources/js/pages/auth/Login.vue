@@ -109,7 +109,7 @@ import { register } from '@/routes'
 import { store } from '@/routes/login'
 import { request } from '@/routes/password'
 import { Form, Head } from '@inertiajs/vue3'
-import { LoaderCircle } from 'lucide-vue-next'
+import { LoaderCircle } from '@lucide/vue'
 
 defineProps<{
     status?: string;
