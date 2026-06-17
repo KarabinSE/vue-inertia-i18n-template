@@ -1,47 +1,42 @@
 <template>
-    <AuthLayout
-        :title="$t('Confirm your password')"
-        :description="$t('This is a secure area of the application. Please confirm your password before continuing.')"
+    <Head :title="$t('Confirm password')" />
+
+    <Form
+        v-slot="{ errors, processing }"
+        v-bind="store.form()"
+        reset-on-success
     >
-        <Head :title="$t('Confirm password')" />
+        <div class="space-y-6">
+            <div class="grid gap-2">
+                <Label html-for="password">{{ $t('Password') }}</Label>
+                <Input
+                    id="password"
+                    type="password"
+                    name="password"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="current-password"
+                    autofocus
+                />
 
-        <Form
-            v-slot="{ errors, processing }"
-            v-bind="store.form()"
-            reset-on-success
-        >
-            <div class="space-y-6">
-                <div class="grid gap-2">
-                    <Label html-for="password">{{ $t('Password') }}</Label>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        class="mt-1 block w-full"
-                        required
-                        autocomplete="current-password"
-                        autofocus
-                    />
-
-                    <InputError :message="errors.password" />
-                </div>
-
-                <div class="flex items-center">
-                    <Button
-                        class="w-full"
-                        :disabled="processing"
-                        data-test="confirm-password-button"
-                    >
-                        <LoaderCircle
-                            v-if="processing"
-                            class="h-4 w-4 animate-spin"
-                        />
-                        {{ $t('Confirm Password') }}
-                    </Button>
-                </div>
+                <InputError :message="errors.password" />
             </div>
-        </Form>
-    </AuthLayout>
+
+            <div class="flex items-center">
+                <Button
+                    class="w-full"
+                    :disabled="processing"
+                    data-test="confirm-password-button"
+                >
+                    <LoaderCircle
+                        v-if="processing"
+                        class="h-4 w-4 animate-spin"
+                    />
+                    {{ $t('Confirm Password') }}
+                </Button>
+            </div>
+        </div>
+    </Form>
 </template>
 
 <script setup lang="ts">
@@ -49,8 +44,15 @@ import InputError from '@/components/InputError.vue'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
-import AuthLayout from '@/layouts/AuthLayout.vue'
 import { store } from '@/routes/password/confirm'
 import { Form, Head } from '@inertiajs/vue3'
-import { LoaderCircle } from 'lucide-vue-next'
+import { LoaderCircle } from '@lucide/vue'
+import { wTrans } from 'laravel-vue-i18n'
+
+defineOptions({
+    layout: {
+        title: wTrans('Confirm your password'),
+        description: wTrans('This is a secure area of the application. Please confirm your password before continuing.'),
+    },
+})
 </script>

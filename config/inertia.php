@@ -21,6 +21,9 @@ return [
         // 'bundle' => base_path('bootstrap/ssr/ssr.mjs'),
     ],
 
+    // Vue Inertia v3 reads the initial page payload from a script element.
+    'use_script_element_for_initial_page' => true,
+
     /*
     |--------------------------------------------------------------------------
     | Testing

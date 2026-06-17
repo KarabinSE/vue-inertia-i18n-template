@@ -41,7 +41,7 @@ import AuthLayout from '@/layouts/AuthLayout.vue'
 import { logout } from '@/routes'
 import { send } from '@/routes/verification'
 import { Form, Head } from '@inertiajs/vue3'
-import { LoaderCircle } from 'lucide-vue-next'
+import { LoaderCircle } from '@lucide/vue'
 
 defineProps<{
     status?: string;
