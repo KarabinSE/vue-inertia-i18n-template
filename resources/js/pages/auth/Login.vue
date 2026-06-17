@@ -1,100 +1,95 @@
 <template>
-    <AuthBase
-        :title="$t('Log in to your account')"
-        :description="$t('Enter your email and password below to log in')"
-    >
-        <Head :title="$t('Log in')" />
+    <Head :title="$t('Log in')" />
 
-        <div
-            v-if="status"
-            class="mb-4 text-center text-sm font-medium text-green-600"
-        >
-            {{ status }}
+    <div
+        v-if="status"
+        class="mb-4 text-center text-sm font-medium text-green-600"
+    >
+        {{ status }}
+    </div>
+
+    <Form
+        v-slot="{ errors, processing }"
+        v-bind="store.form()"
+        :reset-on-success="['password']"
+        class="flex flex-col gap-6"
+    >
+        <div class="grid gap-6">
+            <div class="grid gap-2">
+                <Label for="email">{{ $t('Email address') }}</Label>
+                <Input
+                    id="email"
+                    type="email"
+                    name="email"
+                    required
+                    autofocus
+                    :tabindex="1"
+                    autocomplete="email"
+                    :placeholder="$t('email@example.com')"
+                />
+                <InputError :message="errors.email" />
+            </div>
+
+            <div class="grid gap-2">
+                <div class="flex items-center justify-between">
+                    <Label for="password">{{ $t('Password') }}</Label>
+                    <TextLink
+                        v-if="canResetPassword"
+                        :href="request()"
+                        class="text-sm"
+                        :tabindex="5"
+                    >
+                        {{ $t('Forgot password?') }}
+                    </TextLink>
+                </div>
+                <Input
+                    id="password"
+                    type="password"
+                    name="password"
+                    required
+                    :tabindex="2"
+                    autocomplete="current-password"
+                    :placeholder="$t('Password')"
+                />
+                <InputError :message="errors.password" />
+            </div>
+
+            <div class="flex items-center justify-between">
+                <Label for="remember" class="flex items-center space-x-3">
+                    <Checkbox
+                        id="remember"
+                        name="remember"
+                        :tabindex="3"
+                    />
+                    <span>{{ $t('Remember me') }}</span>
+                </Label>
+            </div>
+
+            <Button
+                type="submit"
+                class="mt-4 w-full"
+                :tabindex="4"
+                :disabled="processing"
+                data-test="login-button"
+            >
+                <LoaderCircle
+                    v-if="processing"
+                    class="h-4 w-4 animate-spin"
+                />
+                {{ $t('Log in') }}
+            </Button>
         </div>
 
-        <Form
-            v-slot="{ errors, processing }"
-            v-bind="store.form()"
-            :reset-on-success="['password']"
-            class="flex flex-col gap-6"
+        <div
+            v-if="canRegister"
+            class="text-center text-sm text-muted-foreground"
         >
-            <div class="grid gap-6">
-                <div class="grid gap-2">
-                    <Label for="email">{{ $t('Email address') }}</Label>
-                    <Input
-                        id="email"
-                        type="email"
-                        name="email"
-                        required
-                        autofocus
-                        :tabindex="1"
-                        autocomplete="email"
-                        :placeholder="$t('email@example.com')"
-                    />
-                    <InputError :message="errors.email" />
-                </div>
-
-                <div class="grid gap-2">
-                    <div class="flex items-center justify-between">
-                        <Label for="password">{{ $t('Password') }}</Label>
-                        <TextLink
-                            v-if="canResetPassword"
-                            :href="request()"
-                            class="text-sm"
-                            :tabindex="5"
-                        >
-                            {{ $t('Forgot password?') }}
-                        </TextLink>
-                    </div>
-                    <Input
-                        id="password"
-                        type="password"
-                        name="password"
-                        required
-                        :tabindex="2"
-                        autocomplete="current-password"
-                        :placeholder="$t('Password')"
-                    />
-                    <InputError :message="errors.password" />
-                </div>
-
-                <div class="flex items-center justify-between">
-                    <Label for="remember" class="flex items-center space-x-3">
-                        <Checkbox
-                            id="remember"
-                            name="remember"
-                            :tabindex="3"
-                        />
-                        <span>{{ $t('Remember me') }}</span>
-                    </Label>
-                </div>
-
-                <Button
-                    type="submit"
-                    class="mt-4 w-full"
-                    :tabindex="4"
-                    :disabled="processing"
-                    data-test="login-button"
-                >
-                    <LoaderCircle
-                        v-if="processing"
-                        class="h-4 w-4 animate-spin"
-                    />
-                    {{ $t('Log in') }}
-                </Button>
-            </div>
-
-            <div
-                v-if="canRegister"
-                class="text-center text-sm text-muted-foreground"
-            >
-                {{ $t('Don\'t have an account?') }}
-                <TextLink :href="register()" :tabindex="5">
-                    {{ $t('Sign up') }}
-                </TextLink>
-            </div>
-        </Form>
-    </AuthBase>
+            {{ $t('Don\'t have an account?') }}
+            <TextLink :href="register()" :tabindex="5">
+                {{ $t('Sign up') }}
+            </TextLink>
+        </div>
+    </Form>
 </template>
 
 <script setup lang="ts">
@@ -110,10 +105,18 @@ import { store } from '@/routes/login'
 import { request } from '@/routes/password'
 import { Form, Head } from '@inertiajs/vue3'
 import { LoaderCircle } from '@lucide/vue'
+import { wTrans } from 'laravel-vue-i18n'
 
 defineProps<{
     status?: string;
     canResetPassword: boolean;
     canRegister: boolean;
 }>()
+
+defineOptions({
+    layout: {
+        title: wTrans('Log in to your account'),
+        description: wTrans('Enter your email and password below to log in'),
+    },
+})
 </script>

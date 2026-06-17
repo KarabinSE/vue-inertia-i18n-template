@@ -1,6 +1,9 @@
-import { createApp, h } from 'vue'
-import { initializeTheme } from './composables/useAppearance'
-import { i18nVue } from 'laravel-vue-i18n'
+import { createInertiaApp } from '@inertiajs/vue3'
+import { initializeTheme } from '@/composables/useAppearance'
+import AppLayout from '@/layouts/AppLayout.vue'
+import AuthLayout from '@/layouts/AuthLayout.vue'
+import SettingsLayout from '@/layouts/settings/Layout.vue'
+// import { initializeFlashToast } from '@/lib/flashToast'
 import { installPlugins } from './plugins'
 
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel'
@@ -19,13 +22,8 @@ createInertiaApp({
                 return AppLayout
         }
     },
-    setup({ el, App, props, plugin }) {
-        const app = createApp({ render: () => h(App, props) })
-
+    withApp(app) {
         installPlugins(app)
-
-        app.use(plugin)
-        app.mount(el as HTMLElement)
     },
     progress: {
         color: '#4B5563',

@@ -10,14 +10,14 @@ export default defineConfig({
     plugins: [
         laravel({
             input: ['resources/js/app.ts', 'resources/css/app.css'],
-            ssr: 'resources/js/ssr.ts',
+            // ssr: 'resources/js/ssr.ts',
             refresh: true,
         }),
+        inertia(),
         tailwindcss(),
         wayfinder({
             formVariants: true,
         }),
-        inertia(),
         vue({
             template: {
                 transformAssetUrls: {
